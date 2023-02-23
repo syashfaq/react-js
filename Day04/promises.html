@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      #container {
+        width: 50%;
+        height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #252d5d;
+      }
+      #container img {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        border: 10px solid purple;
+        background-color: yellow;
+      }
+      #name {
+        width: 50%;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: blueviolet;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"><img id="avatar" src="" alt="Image url" /><br /></div>
+    <div id="name">
+      <p id="demo"></p>
+    </div>
+
+    <script>
+      fetch("https://api.github.com/users/syashfaq").then((data) => {
+        console.log("response data", data);
+        if (data.status === 200) {
+          data.json().then((jsonData) => {
+            console.log(jsonData);
+            document.getElementById("demo").innerHTML =
+              "GitHub Account Holder Name Is : " + jsonData.name;
+            document.getElementById("avatar").src = jsonData.avatar_url;
+          });
+        } else {
+          document.getElementById(
+            "demo"
+          ).innerHTML = `Error Occured with status ${request.status} :: ${request.statusText}`;
+        }
+      });
+    </script>
+  </body>
+</html>
