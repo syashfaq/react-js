@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <img src="" alt="img_url" id="avatar">
+    <script>
+       async function fetchData(){
+            const data = await fetch("https://api.github.com/users/syashfaq");
+            console.log(data);
+            const jsondata = await data.json();
+            console.log(jsondata);
+            if(data.status ===200){
+                document.getElementById('demo').innerHTML = jsondata.name;
+                document.getElementById('avatar').src = jsondata.avatar_url;
+            }else{
+                document.getElementById('demo').innerHTML = "Error Occured."
+            }
+            
+             
+        }
+        fetchData();
+    </script>
+</body>
+</html>
